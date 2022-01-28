@@ -13,4 +13,10 @@ export interface Movie {
   rental: number; // count()
 }
 
-enum RATING { }
+enum RATING {
+  PG =  "PG",
+  G = "G",
+  NC17 = "NC-17",
+  PG13 = "PG-13",
+  R = "R",
+}

@@ -10,14 +10,17 @@ interface DefaultValues {
   currentPage?: number;
   total?: number;
   pageSize?: number;
+  orderType: "ASC" | "DESC";
 }
 
 const useCreatePaginationStore = (defaultValues?: DefaultValues) => {
   const [currentPage, setCurrentPage] = useState(defaultValues?.currentPage ?? 1);
   const [pageSize] = useState(defaultValues?.pageSize ?? DEFAULT_PAGE_SIZE);
   const [total, setTotal] = useState(defaultValues?.total ?? 0);
+  const [orderType, setOrderType] = useState(defaultValues?.orderType ?? "ASC");
 
   const pageLimit = useMemo(() => getLimit(total, pageSize), [total, pageSize]);
+  const setOrder = (orderType: "ASC" | "DESC") => setOrderType(orderType);
 
   const goToPage = useCallback(
     (page: number) => {
@@ -33,8 +36,10 @@ const useCreatePaginationStore = (defaultValues?: DefaultValues) => {
     currentPage,
     pageSize,
     total,
+    orderType,
     setTotal,
     pageLimit,
+    setOrder,
     goToPage,
     nextPage,
     previousPage,

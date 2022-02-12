@@ -18,13 +18,13 @@ export const useGetMovieList = (page: number, pageLimit: number): Result => {
     [RESOURCE, page],
     () => GetMovieList(page, pageLimit),
     { keepPreviousData: true }
-  );
+  );  
 
   return {
     isLoading,
     isError,
-    isEmpty: !data?.data.length,
-    list: data?.data,
+    isEmpty: !data?.results.length,
+    list: data?.results,
     total: data?.total,
     isPreviousData,
     refetch,

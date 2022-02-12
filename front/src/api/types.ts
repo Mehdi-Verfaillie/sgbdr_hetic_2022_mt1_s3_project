@@ -1,5 +1,5 @@
 export interface GetListResult<RecordType> {
-  data: RecordType[];
+  results: RecordType[];
   total: number;
   pageCount: number;
 }

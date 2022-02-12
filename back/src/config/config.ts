@@ -10,7 +10,7 @@ const MYSQL_PASSWORD = process.env.MYSQL_PASSWORD;
 
 const MYSQL = {
     host: MYSQL_HOST,
-    port: MYSQL_PORT,
+    port: Number(MYSQL_PORT),
     database: MYSQL_DATABASE,
     user: MYSQL_USER,
     password: MYSQL_PASSWORD,

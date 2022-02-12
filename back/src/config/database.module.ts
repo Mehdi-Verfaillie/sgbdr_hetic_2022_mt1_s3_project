@@ -1,7 +1,7 @@
-import mysql from 'mysql';
+import mysql, { ConnectionConfig } from 'mysql';
 import config from './config';
 
-const params = {
+const params: ConnectionConfig = {
     host: config.mysql.host,
     port: config.mysql.port,
     database: config.mysql.database,

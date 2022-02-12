@@ -25,7 +25,7 @@ export const movies = async (req: Request, res: Response): Promise<void> => {
 
         res.status(200).json({
             results: movies,
-            total: total[0].total / limit,
+            total: total[0].total / Number(limit),
         });
 
         connection.end();

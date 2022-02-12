@@ -19,6 +19,9 @@ export const Poster = (props: Props): JSX.Element => {
             Genre: {props.genre}
             Loué {props.rantal} fois
         </Container>
+
+
+        
     )
 }
 

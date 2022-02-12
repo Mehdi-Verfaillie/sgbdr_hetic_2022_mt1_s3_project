@@ -3,13 +3,16 @@ module.exports = {
   env: {
     browser: true,
     es2021: true,
+    "jest/globals": true,
   },
   extends: [
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:react/recommended",
     "plugin:react-hooks/recommended",
+    "plugin:jest/recommended",
     "plugin:prettier/recommended",
+    "plugin:storybook/recommended",
   ],
   parser: "@typescript-eslint/parser",
   parserOptions: {
@@ -55,5 +58,8 @@ module.exports = {
     "@typescript-eslint/no-empty-function": "off",
     "@typescript-eslint/no-empty-interface": "off",
     "@typescript-eslint/ban-ts-comment": "warn",
+    // ublo
+    "local-rules/styled-components-no-px": "error",
+    "local-rules/styled-components-no-hardcoded-colors": "error",
   },
 };

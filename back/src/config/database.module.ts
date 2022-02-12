@@ -23,7 +23,7 @@ const Connect = async (): Promise<mysql.Connection> =>
         });
     });
 
-const Query = async (connection: mysql.Connection, query: string): Promise<unknown> =>
+const Query = async (connection: mysql.Connection, query: string): Promise<any> =>
     new Promise((resolve, reject) => {
         connection.query(query, connection, (error, result) => {
             if (error) {

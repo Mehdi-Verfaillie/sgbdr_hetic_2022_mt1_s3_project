@@ -1,59 +1,46 @@
-import React, { useCallback } from "react";
-import create from "zustand";
-import createContext from "zustand/context";
+import { createStoreContext } from "./createStore.context";
+import { useCallback, useMemo, useState } from "react";
 
 const DEFAULT_PAGE_SIZE = 10;
+const clamp = (value: number, min: number, max: number): number =>
+  Math.max(Math.min(value, max), min);
+const getLimit = (total: number, pageSize: number): number => Math.ceil(total / pageSize);
 
-interface PaginationStateValue {
-  currentPage: number;
-  pageLimit: number;
-  pageSize: number;
+interface DefaultValues {
+  currentPage?: number;
+  total?: number;
+  pageSize?: number;
 }
 
-interface PaginationState extends PaginationStateValue {
-  previousPage: () => void;
-  nextPage: () => void;
-  goToPage: (value: number) => void;
-  setTotal: (total: number) => void;
-}
+const useCreatePaginationStore = (defaultValues?: DefaultValues) => {
+  const [currentPage, setCurrentPage] = useState(defaultValues?.currentPage ?? 1);
+  const [pageSize] = useState(defaultValues?.pageSize ?? DEFAULT_PAGE_SIZE);
+  const [total, setTotal] = useState(defaultValues?.total ?? 0);
 
-const clamp = (value: number, min: number, max: number) => Math.max(Math.min(value, max), min);
-const getLimit = (total: number, pageSize: number) => Math.ceil(total / pageSize);
+  const pageLimit = useMemo(() => getLimit(total, pageSize), [total, pageSize]);
 
-export const createPaginationStore = (defaultValues?: Partial<PaginationStateValue>) =>
-  create<PaginationState>((set) => ({
-    currentPage: defaultValues?.currentPage ?? 1,
-    pageLimit: defaultValues?.pageLimit ?? 1,
-    pageSize: defaultValues?.pageSize ?? DEFAULT_PAGE_SIZE,
-    goToPage(value: number) {
-      set((state) => ({ currentPage: clamp(value, 1, state.pageLimit) }));
+  const goToPage = useCallback(
+    (page: number) => {
+      setCurrentPage(clamp(page, 1, pageLimit));
     },
-    previousPage() {
-      set((state) => ({ currentPage: clamp(this.currentPage - 1, 1, state.pageLimit) }));
-    },
-    nextPage() {
-      set((state) => ({ currentPage: clamp(this.currentPage + 1, 1, state.pageLimit) }));
-    },
-    setTotal: (total: number) =>
-      set((state) => {
-        const limit = getLimit(total, state.pageSize);
-        return { pageLimit: limit, currentPage: clamp(state.currentPage, 1, limit) };
-      }),
-  }));
-
-const { Provider, useStore } = createContext<PaginationState>();
-
-interface Props {
-  children: React.ReactNode;
-  defaultValues?: Partial<PaginationStateValue>;
-}
-
-export const PaginationProvider = (props: Props): JSX.Element => {
-  const _createPaginationStore = useCallback(
-    () => createPaginationStore(props.defaultValues),
-    [props.defaultValues]
+    [pageLimit]
   );
-  return <Provider createStore={_createPaginationStore}>{props.children}</Provider>;
+
+  const nextPage = useCallback(() => goToPage(currentPage + 1), [currentPage, goToPage]);
+  const previousPage = useCallback(() => goToPage(currentPage - 1), [currentPage, goToPage]);
+
+  return {
+    currentPage,
+    pageSize,
+    total,
+    setTotal,
+    pageLimit,
+    goToPage,
+    nextPage,
+    previousPage,
+  };
 };
 
-export const usePaginationStore = useStore;
+const PaginationStoreContext = createStoreContext(useCreatePaginationStore);
+export const PaginationProvider = PaginationStoreContext.StoreProvider;
+export const usePagination = PaginationStoreContext.useStore;

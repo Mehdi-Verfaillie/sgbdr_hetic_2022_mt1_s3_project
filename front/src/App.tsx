@@ -2,15 +2,21 @@ import React from 'react';
 import './reset.css'
 import styled from 'styled-components';
 import { FilmList } from './components/FilmList';
+import { QueryClient, QueryClientProvider } from "react-query";
+
+const queryClient = new QueryClient();
 
 function App() {
   return (
-    <Body>
-      <FilmList />
-    </Body>
+   <QueryClientProvider client={queryClient}>
+      <Body>
+        <FilmList />
+      </Body>
+    </QueryClientProvider>
+
   );
 }
-const Body = styled("body")`
+const Body = styled("div")`
   background-image: linear-gradient(180deg, #973e94, #6e31bb 31%, #01101c 93%);
   height: 100vh;
   display: flex;

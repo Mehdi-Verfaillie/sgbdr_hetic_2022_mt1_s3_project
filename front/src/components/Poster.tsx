@@ -3,30 +3,45 @@ import styled from "styled-components";
 
 
 interface Props {
-    title: string;
-    price: string;
-    rank: string;
-    genre: string;
-    rantal: string;
+   title: string;
+   price: string;
+   rank: string;
+   genre: string;
+   rantal: string;
 }
 
 export const Poster = (props: Props): JSX.Element => {    
     return (
         <Container>
-            Titre: {props.title}
-            Prix: {props.price}
-            Classement: {props.rank}
-            Genre: {props.genre}
-            Loué {props.rantal} fois
+            <Text>Titre: {props.title}</Text>
+            <Text>Prix: {props.price}</Text>
+            <Text>Classement: {props.rank}</Text>
+            <Text>Genre: {props.genre}</Text>
+            <Text>Loué {props.rantal} fois</Text>
         </Container>
-
-
-        
     )
 }
 
 const Container = styled("div")`
-    background: gray;
+     background: linear-gradient(rgba(180, 82, 255, 0.2) 0%, rgba(234, 114, 106, 0.2) 33.51%), rgb(1, 16, 28);
+    padding: 46px 24px 0px;
     width: 200px;
-    height: 350px;
+    height: 450px;
+    padding: 46px 24px 0px;
+    border-width: 1.5px;
+    border-style: solid;
+    border-color: transparent;
+    border-image: initial;
+    border-radius: 24px;
+`
+
+
+const Text = styled("p")`
+    font-size: 1.25rem;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    line-height: 1.1875;
+    font-family: Roboto, -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    color: rgb(255, 255, 255);
+    margin: 0.5rem 0;
 `

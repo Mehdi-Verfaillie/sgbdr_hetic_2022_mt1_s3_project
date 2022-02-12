@@ -17,12 +17,22 @@ export const StatefulList = (props: Props): JSX.Element => {
   if (props.isEmpty) return <Text>empty list...</Text>;
 
   return (
-    <div>
+    <Container>
       <List films={props.list!} />
-      <Pagination />
-    </div>
+      <PaginationContainer>
+        <Pagination />
+      </PaginationContainer>
+    </Container>
   );
 };
+
+const Container = styled("div")`
+  width: 100vw;
+`
+
+const PaginationContainer = styled("div")`
+  margin-top: 1rem;
+`
 
 const Text = styled("p")`
      font-size: 1.25rem;

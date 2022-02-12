@@ -20,14 +20,10 @@ export const List = (props: Props) => {
 
 const FilmListContainer = styled("div")`
 overflow: visible;
-  width: 90%;
-  max-width: 90%;
-  max-height: 400rem;
   display: flex;
-  justify-content: center;
-  overflow: auto;
-
-  div {
-    margin: 1rem;
-  }
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 1rem;
+  height: 400px;
+  overflow: scroll;
 `

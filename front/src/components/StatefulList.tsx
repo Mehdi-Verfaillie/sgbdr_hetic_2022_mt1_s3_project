@@ -28,6 +28,9 @@ export const StatefulList = (props: Props): JSX.Element => {
 
 const Container = styled("div")`
   width: 100vw;
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
 `
 
 const PaginationContainer = styled("div")`
@@ -35,7 +38,7 @@ const PaginationContainer = styled("div")`
 `
 
 const Text = styled("p")`
-     font-size: 1.25rem;
+    font-size: 1.25rem;
     font-weight: 500;
     letter-spacing: 0.5px;
     line-height: 1.1875;

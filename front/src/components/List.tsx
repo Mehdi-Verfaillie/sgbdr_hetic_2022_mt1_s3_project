@@ -24,6 +24,6 @@ overflow: visible;
   justify-content: space-around;
   flex-wrap: wrap;
   gap: 1rem;
-  height: 400px;
+  height: 650px;
   overflow: scroll;
 `

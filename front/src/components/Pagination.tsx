@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import styled from 'styled-components';
 import { ChevronRight, ChevronBarRight, ChevronBarLeft, ChevronLeft } from "react-bootstrap-icons";
-import { usePagination } from '@/context/pagination.provider';
+import { usePagination } from '../context/pagination.provider';
 
 export const Pagination = (): JSX.Element => {
     const pagination = usePagination();

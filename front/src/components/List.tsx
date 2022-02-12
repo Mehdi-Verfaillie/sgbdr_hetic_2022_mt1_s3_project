@@ -1,4 +1,4 @@
-import { Movie } from '@/api/types';
+import { Movie } from '../api/types';
 import React from 'react';
 import styled from 'styled-components';
 import { Poster } from './Poster';

@@ -1,5 +1,5 @@
-import { useGetMovieList } from "@/api/useGetMovieList";
-import { PaginationProvider, usePagination } from "@/context/pagination.provider";
+import { useGetMovieList } from "../api/useGetMovieList";
+import { PaginationProvider, usePagination } from "../context/pagination.provider";
 import React, { useEffect } from "react";
 import { StatefulList } from "./StatefulList";
 

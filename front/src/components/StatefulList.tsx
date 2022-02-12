@@ -1,4 +1,4 @@
-import { Movie } from "@/api/types";
+import { Movie } from "../api/types";
 import React from "react";
 import { List } from "./List";
 import { Pagination } from "./Pagination";

@@ -15,12 +15,12 @@ export const index = async (req: Request, res: Response): Promise<void> => {
  * Movie list.
  */
 export const movies = async (req: Request, res: Response): Promise<void> => {
-    const { page, limit }: { page: number, limit: number } = req.query;
+    const { page, limit, column, orderType } = req.query;
     
     try {
         const connection = await Connect();
 
-        const movies = await Query(connection, getMovies(limit, page));
+        const movies = await Query(connection, getMovies(limit, page, column, orderType));
         const total = await Query(connection, totalMoviesQuery);
 
         res.status(200).json({

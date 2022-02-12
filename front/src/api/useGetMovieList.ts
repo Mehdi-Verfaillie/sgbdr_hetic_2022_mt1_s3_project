@@ -13,10 +13,10 @@ interface Result {
   refetch: () => Promise<UseQueryResult>;
 }
 
-export const useGetMovieList = (page: number, pageLimit: number): Result => {
+export const useGetMovieList = (page: number, pageLimit: number, column?: string, orderType?: "ASC" | "DESC"): Result => {
   const { isLoading, isError, data, isPreviousData, refetch } = useQuery(
     [RESOURCE, page],
-    () => GetMovieList(page, pageLimit),
+    () => GetMovieList(page, pageLimit, column, orderType),
     { keepPreviousData: true }
   );  
 

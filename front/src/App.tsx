@@ -1,23 +1,12 @@
 import React from 'react';
 import './reset.css'
-import { Poster } from './components/Poster';
 import styled from 'styled-components';
+import { FilmList } from './components/FilmList';
 
 function App() {
   return (
     <Body>
-      <FilmListContainer>
-        {[{id: "1", title: "HelloWorld", price: "HelloWorld", rank: "HelloWorld", genre: "HelloWorld", rantal: "HelloWorld"}, {id: "1", title: "HelloWorld", price: "HelloWorld", rank: "HelloWorld", genre: "HelloWorld", rantal: "HelloWorld"},{id: "1", title: "HelloWorld", price: "HelloWorld", rank: "HelloWorld", genre: "HelloWorld", rantal: "HelloWorld"},{id: "1", title: "HelloWorld", price: "HelloWorld", rank: "HelloWorld", genre: "HelloWorld", rantal: "HelloWorld"},{id: "1", title: "HelloWorld", price: "HelloWorld", rank: "HelloWorld", genre: "HelloWorld", rantal: "HelloWorld"},{id: "1", title: "HelloWorld", price: "HelloWorld", rank: "HelloWorld", genre: "HelloWorld", rantal: "HelloWorld"},{id: "1", title: "HelloWorld", price: "HelloWorld", rank: "HelloWorld", genre: "HelloWorld", rantal: "HelloWorld"},{id: "1", title: "HelloWorld", price: "HelloWorld", rank: "HelloWorld", genre: "HelloWorld", rantal: "HelloWorld"},{id: "1", title: "HelloWorld", price: "HelloWorld", rank: "HelloWorld", genre: "HelloWorld", rantal: "HelloWorld"},{id: "1", title: "HelloWorld", price: "HelloWorld", rank: "HelloWorld", genre: "HelloWorld", rantal: "HelloWorld"},{id: "1", title: "HelloWorld", price: "HelloWorld", rank: "HelloWorld", genre: "HelloWorld", rantal: "HelloWorld"},{id: "1", title: "HelloWorld", price: "HelloWorld", rank: "HelloWorld", genre: "HelloWorld", rantal: "HelloWorld"},{id: "1", title: "HelloWorld", price: "HelloWorld", rank: "HelloWorld", genre: "HelloWorld", rantal: "HelloWorld"},{id: "1", title: "HelloWorld", price: "HelloWorld", rank: "HelloWorld", genre: "HelloWorld", rantal: "HelloWorld"},].map((film) => (
-          <Poster
-            key={film.id}
-            title={film.title}
-            price={film.price}
-            rank={film.rank}
-            genre={film.genre}
-            rantal={film.rantal}
-          />
-        ))}
-      </FilmListContainer>
+      <FilmList />
     </Body>
   );
 }
@@ -29,19 +18,4 @@ const Body = styled("body")`
   justify-content: center;
   align-items: center;
 `
-
-const FilmListContainer = styled("div")`
-overflow: visible;
-  width: 90%;
-  max-width: 90%;
-  max-height: 400rem;
-  display: flex;
-  justify-content: center;
-  overflow: auto;
-
-  div {
-    margin: 1rem;
-  }
-`
-
 export default App;

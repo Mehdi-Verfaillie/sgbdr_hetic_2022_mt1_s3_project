@@ -36,11 +36,19 @@ export const Pagination = (): JSX.Element => {
         <ButtonContainer>
           <ChevronBarRight onClick={() => pagination.goToPage(pagination.pageLimit)} />
       </ButtonContainer>
-      
+
+      Filter by:
       {/* @ts-ignore */}
       <select onChange={(e) => pagination.setOrder(e.target.value)} value={pagination.orderType}>
         <option value="ASC">ASC</option>
         <option value="DESC">DESC</option>
+      </select>
+
+      {/* @ts-ignore */}
+      <select onChange={(e) => pagination._setColumn(e.target.value)} value={pagination.column}>
+        <option value="title">title</option>
+        <option value="category">category</option>
+        <option value="rental">rental</option>
       </select>
       </Container>
   );  

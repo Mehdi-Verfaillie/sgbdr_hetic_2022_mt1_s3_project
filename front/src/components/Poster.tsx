@@ -1,23 +1,15 @@
+import { Movie } from '@/api/types';
 import React from 'react';
 import styled from "styled-components";
 
-
-interface Props {
-   title: string;
-   price: string;
-   rank: string;
-   genre: string;
-   rantal: string;
-}
-
-export const Poster = (props: Props): JSX.Element => {    
+export const Poster = (props: Movie): JSX.Element => {    
     return (
         <Container>
             <Text>Titre: {props.title}</Text>
-            <Text>Prix: {props.price}</Text>
-            <Text>Classement: {props.rank}</Text>
-            <Text>Genre: {props.genre}</Text>
-            <Text>Loué {props.rantal} fois</Text>
+            <Text>Prix: {props.category}</Text>
+            <Text>Classement: {props.rating}</Text>
+            <Text>Genre: {props.amount}</Text>
+            <Text>Loué {props.rental} fois</Text>
         </Container>
     )
 }

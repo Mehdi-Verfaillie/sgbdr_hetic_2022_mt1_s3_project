@@ -17,7 +17,7 @@ export const index = async (req: Request, res: Response): Promise<void> => {
  */
 export const movies = async (req: Request, res: Response): Promise<void> => {
     const { page, limit, column, orderType } = req.query;
-    
+
     try {
         const connection = await Connect();
 
@@ -27,7 +27,7 @@ export const movies = async (req: Request, res: Response): Promise<void> => {
 
         res.status(200).json({
             results: movies,
-            total: total[0].total / Number(limit),
+            total: total[0].total,
         });
 
         connection.end();

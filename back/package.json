@@ -21,7 +21,8 @@
         "run-prettier": "prettier src/*.ts",
         "validate-prettiness": "yarn run-prettier -c",
         "make-prettier": "yarn run-prettier --write",
-        "heroku-postbuild": "npm install --prefix front && npm run build --prefix front"
+        "postinstall": "tsc",
+        "deploy": "git add . && git commit -m Heroku && git push heroku master"
     },
     "author": "",
     "license": "ISC",

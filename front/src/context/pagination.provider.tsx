@@ -10,21 +10,23 @@ interface DefaultValues {
   currentPage?: number;
   total?: number;
   pageSize?: number;
+  column?: "film" | "category" | "rental";
+  orderType: "ASC" | "DESC";
 }
 
 const useCreatePaginationStore = (defaultValues?: DefaultValues) => {
   const [currentPage, setCurrentPage] = useState(defaultValues?.currentPage ?? 1);
   const [pageSize] = useState(defaultValues?.pageSize ?? DEFAULT_PAGE_SIZE);
   const [total, setTotal] = useState(defaultValues?.total ?? 0);
+  const [orderType, setOrderType] = useState(defaultValues?.orderType ?? "ASC");
+  const [column, setColumn] = useState(defaultValues?.column ?? "film");
 
   const pageLimit = useMemo(() => getLimit(total, pageSize), [total, pageSize]);
+  
+  const _setColumn = useCallback((column: "film" | "category" | "rental") => setColumn(column),[]);
+  const setOrder = useCallback((orderType: "ASC" | "DESC") => setOrderType(orderType), []);
 
-  const goToPage = useCallback(
-    (page: number) => {
-      setCurrentPage(clamp(page, 1, pageLimit));
-    },
-    [pageLimit]
-  );
+  const goToPage = useCallback((page: number) => setCurrentPage(clamp(page, 1, pageLimit)), [pageLimit]);
 
   const nextPage = useCallback(() => goToPage(currentPage + 1), [currentPage, goToPage]);
   const previousPage = useCallback(() => goToPage(currentPage - 1), [currentPage, goToPage]);
@@ -33,8 +35,12 @@ const useCreatePaginationStore = (defaultValues?: DefaultValues) => {
     currentPage,
     pageSize,
     total,
+    orderType,
+    column,
     setTotal,
     pageLimit,
+    _setColumn,
+    setOrder,
     goToPage,
     nextPage,
     previousPage,

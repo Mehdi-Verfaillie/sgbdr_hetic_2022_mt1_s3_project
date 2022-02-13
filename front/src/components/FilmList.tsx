@@ -5,7 +5,8 @@ import { StatefulList } from "./StatefulList";
 
 const FilmListWithoutPagination = (): JSX.Element => {
   const paginationStore = usePagination();
-  const query = useGetMovieList(paginationStore.currentPage, paginationStore.pageSize);
+  const query = useGetMovieList(paginationStore.currentPage, paginationStore.pageSize, paginationStore.column, paginationStore.orderType);
+  
 
   useEffect(() => {
     paginationStore.setTotal(query.total ?? 0);

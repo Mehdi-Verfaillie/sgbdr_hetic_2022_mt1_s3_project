@@ -1,5 +1,4 @@
 import { useQuery, UseQueryResult } from "react-query";
-import { RESOURCE } from "./config";
 import { GetMovieList } from "./getMovieList";
 import { Movie } from "./types";
 
@@ -13,18 +12,18 @@ interface Result {
   refetch: () => Promise<UseQueryResult>;
 }
 
-export const useGetMovieList = (page: number, pageLimit: number): Result => {
+export const useGetMovieList = (page: number, pageLimit: number, column: string, orderType: "ASC" | "DESC"): Result => {
   const { isLoading, isError, data, isPreviousData, refetch } = useQuery(
-    [RESOURCE, page],
-    () => GetMovieList(page, pageLimit),
+    [process.env.REACT_APP_RESOURCE, page, column, orderType],
+    () => GetMovieList(page, pageLimit, column, orderType),
     { keepPreviousData: true }
-  );
+  );  
 
   return {
     isLoading,
     isError,
-    isEmpty: !data?.data.length,
-    list: data?.data,
+    isEmpty: !data?.results.length,
+    list: data?.results,
     total: data?.total,
     isPreviousData,
     refetch,

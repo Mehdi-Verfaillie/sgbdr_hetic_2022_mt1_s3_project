@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { Connect, Query } from "../config/database.module";
 import { Request, Response } from "express";
 import { getMovies, totalMoviesQuery } from "./types/queries";
@@ -20,6 +21,7 @@ export const movies = async (req: Request, res: Response): Promise<void> => {
     try {
         const connection = await Connect();
 
+        // @ts-ignore
         const movies = await Query(connection, getMovies(limit, page, column, orderType));
         const total = await Query(connection, totalMoviesQuery);
 

@@ -5,28 +5,28 @@ import { usePagination } from '../context/pagination.provider';
 
 export const Pagination = (): JSX.Element => {
   const pagination = usePagination();
-  
+
   const { startIndex, endIndex } = useMemo(
       () => ({
-          startIndex: (pagination.currentPage - 1) * pagination.pageSize + 1,
-          endIndex: pagination.currentPage * pagination.pageSize,
+          startIndex: pagination.currentPage * pagination.pageSize + 1,
+          endIndex: (pagination.currentPage + 1) * pagination.pageSize,
       }),
       [pagination.currentPage, pagination.pageSize]
   );
-  
+
   return (
       <Container>
         <Text>
-            {`${startIndex}-${endIndex} sur ${pagination.pageLimit ?? "-"}`}
+            {`${startIndex}-${endIndex} sur ${pagination.total ?? "-"}`}
         </Text>
         <ButtonContainer>
           <ChevronBarLeft onClick={() => pagination.goToPage(1)} />
         </ButtonContainer>
-            
+
         <ButtonContainer>
           <ChevronLeft onClick={() => pagination.previousPage()} />
         </ButtonContainer>
-        
+
         <CurrentPage>{pagination.currentPage}</CurrentPage>
 
         <ButtonContainer>
@@ -51,7 +51,7 @@ export const Pagination = (): JSX.Element => {
         <option value="rental">rental</option>
       </select>
       </Container>
-  );  
+  );
 }
 
 const Container = styled("div")`

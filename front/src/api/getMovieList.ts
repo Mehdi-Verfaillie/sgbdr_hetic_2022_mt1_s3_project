@@ -1,5 +1,4 @@
 import axios from "axios";
-import { API_URL, RESOURCE } from "./config";
 import { GetListResult, Movie } from "./types";
 
 export const GetMovieList = async (
@@ -9,7 +8,7 @@ export const GetMovieList = async (
   orderType = "ASC",
 ): Promise<GetListResult<Movie>> => {
   return (
-    await axios.get<GetListResult<Movie>>(`${API_URL}/${RESOURCE}`, {
+    await axios.get<GetListResult<Movie>>(`${process.env.REACT_APP_API_URL}/${process.env.REACT_APP_RESOURCE}`, {
       withCredentials: false,
       params: { page, limit: pageLimit, column, orderType },
     })

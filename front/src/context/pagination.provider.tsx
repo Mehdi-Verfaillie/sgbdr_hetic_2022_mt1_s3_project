@@ -4,7 +4,7 @@ import { useCallback, useMemo, useState } from "react";
 const DEFAULT_PAGE_SIZE = 10;
 const clamp = (value: number, min: number, max: number): number =>
   Math.max(Math.min(value, max), min);
-const getLimit = (total: number, pageSize: number): number => Math.ceil(total / pageSize);
+const getLimit = (total: number, pageSize: number): number => Math.ceil(total / pageSize) - 1;
 
 interface DefaultValues {
   currentPage?: number;
@@ -15,14 +15,14 @@ interface DefaultValues {
 }
 
 const useCreatePaginationStore = (defaultValues?: DefaultValues) => {
-  const [currentPage, setCurrentPage] = useState(defaultValues?.currentPage ?? 1);
+  const [currentPage, setCurrentPage] = useState(defaultValues?.currentPage ?? 0);
   const [pageSize] = useState(defaultValues?.pageSize ?? DEFAULT_PAGE_SIZE);
   const [total, setTotal] = useState(defaultValues?.total ?? 0);
   const [orderType, setOrderType] = useState(defaultValues?.orderType ?? "ASC");
   const [column, setColumn] = useState(defaultValues?.column ?? "film");
 
   const pageLimit = useMemo(() => getLimit(total, pageSize), [total, pageSize]);
-  
+
   const _setColumn = useCallback((column: "film" | "category" | "rental") => setColumn(column),[]);
   const setOrder = useCallback((orderType: "ASC" | "DESC") => setOrderType(orderType), []);
 
